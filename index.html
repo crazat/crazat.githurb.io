@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>규림 다이어트 초기 설문</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+  }
+  h1, h2, h3 {
+    margin-top: 30px;
+  }
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  input[type="text"], input[type="number"], select, textarea {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 15px;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  input[type="checkbox"], input[type="radio"] {
+    margin-right: 5px;
+  }
+  .section {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  .submit-btn {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<h1>규림 다이어트 초기 설문</h1>
+
+<form action="send_survey.php" method="POST">
+
+  <!-- 기본정보 -->
+  <div class="section">
+    <h2>기본정보</h2>
+    <label>이름: <input type="text" name="name"></label>
+    <label>작성일: <input type="text" name="date"></label>
+    <label>
+      결혼여부:
+      <select name="marital_status">
+        <option value="">선택</option>
+        <option value="미혼">미혼</option>
+        <option value="기혼">기혼</option>
+      </select>
+    </label>
+    <label>출산여부 자녀수: <input type="number" name="children_count"></label>
+    <label>마지막 출산년도: <input type="text" name="last_birth_year"></label>
+    <label>생활 및 근무 패턴:
+      <select name="lifestyle_pattern">
+        <option value="">선택</option>
+        <option value="주간근무">주간근무</option>
+        <option value="야간근무">야간근무</option>
+        <option value="교대근무">교대근무</option>
+        <option value="기타">기타</option>
+      </select>
+    </label>
+    <label>평소 주로 활동: 
+      <select name="activity_pattern">
+        <option value="">선택</option>
+        <option value="서서 주로 활동">서서 주로 활동</option>
+        <option value="앉아서 주로 활동">앉아서 주로 활동</option>
+      </select>
+    </label>
+  </div>
+
+
+  <!-- 나의 체중정보와 히스토리 -->
+  <div class="section">
+    <h2>나의 체중정보와 히스토리</h2>
+    <label>최근 체중증가: 몇 년/개월에 걸쳐 몇 kg 증가했는지:
+      <input type="text" name="recent_weight_gain_info" placeholder="예: 2년간 5kg 증가">
+    </label>
+    <label>오늘 병원 내원 전 음식/음료 섭취여부:
+      <input type="text" name="pre_visit_food_intake" placeholder="예: OO시간 전 OO 섭취">
+    </label>
+    <label>20세 이후 최고체중(이 때의 나이): <input type="text" name="weight_history_20s" placeholder="예: 65kg (나이 25세)"> </label>
+    <label>최저체중(이 때의 나이): <input type="text" name="lowest_weight" placeholder="예: 50kg (나이 21세)"> </label>
+    <label>다이어트 경험:
+      <select name="diet_experience">
+        <option value="">선택</option>
+        <option value="전혀없다">전혀없다</option>
+        <option value="1-2회">1-2회</option>
+        <option value="3-4회">3-4회</option>
+        <option value="5회이상">5회이상</option>
+      </select>
+    </label>
+    <label>시도한 다이어트 방법(중복가능):
+      <textarea name="diet_methods" placeholder="예: 미소식, 건강기능식품, 민간요법, 병원치료, 한방치료, 운동..."></textarea>
+    </label>
+    <label>위 방법들 중에서 가장 효과가 좋았던 다이어트 방법:
+      <input type="text" name="best_diet_method">
+    </label>
+    <label>그 방법 체중 감량 기간 / 총 감량 체중:
+      <input type="text" name="diet_result" placeholder="예: 3개월/5kg 감량">
+    </label>
+  </div>
+
+
+  <!-- 나의 평상시 몸상태 -->
+  <div class="section">
+    <h2>나의 평상시 몸상태 (모두 체크)</h2>
+    <p>과거에 앓았거나 현재 앓고 있는 질환이 있습니까?</p>
+    <label><input type="checkbox" name="diseases[]" value="간염(보균자)">간염(보균자)</label>
+    <label><input type="checkbox" name="diseases[]" value="갑상선질환">갑상선질환</label>
+    <label><input type="checkbox" name="diseases[]" value="지구낭심소질환">지구낭심소질환</label>
+    <label><input type="checkbox" name="diseases[]" value="신장질환">신장질환</label>
+    <label><input type="checkbox" name="diseases[]" value="혈핵, 당뇨, 고혈압">혈핵, 당뇨, 고혈압</label>
+    <label><input type="checkbox" name="diseases[]" value="수술경험">수술경험</label>
+    <label><input type="checkbox" name="diseases[]" value="기타">기타</label>
+    <label><input type="checkbox" name="diseases[]" value="없음">없음</label>
+
+    <p>현재 복용중인 건강기능식품 있나요?</p>
+    <label><input type="checkbox" name="supplements[]" value="없음">없음</label>
+    <label><input type="checkbox" name="supplements[]" value="비타민">비타민</label>
+    <label><input type="checkbox" name="supplements[]" value="피쉬오일, 오메가3">피쉬오일, 오메가3</label>
+    <label><input type="checkbox" name="supplements[]" value="홍삼">홍삼</label>
+    <label><input type="checkbox" name="supplements[]" value="건강즙">건강즙</label>
+    <label><input type="checkbox" name="supplements[]" value="기타">기타</label>
+
+    <p>소화상태, 수면패턴, 변비/설사 유무, 신체차가운지 여부, 몸 곳곳 통증유무, 생리주기 변화 여부 등 자세히 적어주세요.</p>
+    <textarea name="body_state_details" placeholder="예: 소화약함, 자주더부룩, 수면패턴 불규칙, 자주 피로, 변비 1주 2회, 손발차가움 등..."></textarea>
+  </div>
+
+
+  <!-- 최근 나의 생활습관 -->
+  <div class="section">
+    <h2>최근 나의 생활습관</h2>
+    <label>
+      최근 식욕조절은?
+      <select name="appetite_control">
+        <option value="">선택</option>
+        <option value="전혀 안된다">전혀 안된다</option>
+        <option value="보통이다">보통이다</option>
+        <option value="잘 되는 편이다">잘 되는 편이다</option>
+      </select>
+    </label>
+    <label>
+      스트레스 받으면 음식섭취?
+      <select name="stress_eating">
+        <option value="">선택</option>
+        <option value="거의 먹는다">거의 먹는다</option>
+        <option value="간혹 먹는다">간혹 먹는다</option>
+        <option value="잘 안먹는다">잘 안먹는다</option>
+        <option value="모르겠다">모르겠다</option>
+      </select>
+    </label>
+    <label>
+      식사시간이 규칙적인 편인가요?
+      <select name="regular_meals">
+        <option value="">선택</option>
+        <option value="비교적 규칙적">비교적 규칙적</option>
+        <option value="불규칙적인 편">불규칙적인 편</option>
+      </select>
+    </label>
+    <label>평소 하루에 몇 끼를 드시나요?
+      <select name="meals_per_day">
+        <option value="">선택</option>
+        <option value="1끼">1끼</option>
+        <option value="2끼">2끼</option>
+        <option value="3끼">3끼</option>
+        <option value="한끼 불규칙">한끼 불규칙</option>
+      </select>
+    </label>
+    <label>음주횟수: 
+      <select name="drink_frequency">
+        <option value="">선택</option>
+        <option value="자주 마심(일주일 n회)">자주 마심(일주일 n회)</option>
+        <option value="거의 안 마심">거의 안 마심</option>
+      </select>
+    </label>
+    <label>일주일 운동패턴:
+      <select name="exercise_pattern">
+        <option value="">선택</option>
+        <option value="전혀안함">전혀안함</option>
+        <option value="간혹">간혹</option>
+        <option value="규칙적으로 함(일주일 n회)">규칙적으로 함(일주일 n회)</option>
+      </select>
+    </label>
+    <label>운동 시간(일주일 운동 시): <input type="text" name="exercise_time" placeholder="예: 하루 30분 ~1시간"></label>
+  </div>
+
+
+  <!-- 나의 다이어트 목표 -->
+  <div class="section">
+    <h2>나의 다이어트 목표</h2>
+    <label>집에 전자체중계가 있나요?
+      <select name="scale_at_home">
+        <option value="">선택</option>
+        <option value="없음">없음</option>
+        <option value="있음">있음</option>
+      </select>
+    </label>
+    <label>감량을 해야 할 체중은?
+      <select name="weight_loss_goal_range">
+        <option value="">선택</option>
+        <option value="5kg이하">5kg이하</option>
+        <option value="5~10kg">5~10kg</option>
+        <option value="10~15kg">10~15kg</option>
+        <option value="15~20kg">15~20kg</option>
+        <option value="20kg이상">20kg이상</option>
+      </select>
+    </label>
+    <label>목표 체중: <input type="text" name="target_weight"></label>
+    <label>예상 감량기간? 
+      <select name="expected_duration">
+        <option value="">선택</option>
+        <option value="1개월">1개월</option>
+        <option value="2개월">2개월</option>
+        <option value="3개월">3개월</option>
+        <option value="더길게">더길게</option>
+      </select>
+    </label>
+    <label>특히 고민인 부위?
+      <textarea name="concerned_areas" placeholder="예: 복부, 옆구리, 팔뚝, 허벅지, 엉덩이, 얼굴 등"></textarea>
+    </label>
+    <label>감량을 결심하게 된 특별한 이유나 이벤트가 있나요?
+      <input type="text" name="special_reason" placeholder="예: 결혼, 행사, 건강, 자신감 회복, 스트레스 등">
+    </label>
+  </div>
+
+
+  <!-- 방문계기 -->
+  <div class="section">
+    <h2>방문계기</h2>
+    <label>소개/지인소개 (이름): <input type="text" name="referral_name"></label>
+    <label>직원소개 (이름): <input type="text" name="staff_name"></label>
+    <label>제휴사 (명칭): <input type="text" name="partner_name"></label>
+
+    <p>매체 (중복가능):</p>
+    <label><input type="checkbox" name="media[]" value="블로그, 카페">블로그, 카페</label>
+    <label><input type="checkbox" name="media[]" value="홈페이지">홈페이지</label>
+    <label><input type="checkbox" name="media[]" value="버스, 지하철, 택시">버스, 지하철, 택시</label>
+    <label><input type="checkbox" name="media[]" value="신문, 잡지">신문, 잡지</label>
+    <label><input type="checkbox" name="media[]" value="현수막, 전단, 배너">현수막, 전단, 배너</label>
+    <label><input type="checkbox" name="media[]" value="기타">기타</label>
+  </div>
+<form action="send_survey.php" method="POST">
+  <input type="submit" value="설문 제출" class="submit-btn">
+
+</form>
+
+</body>
+</html>
