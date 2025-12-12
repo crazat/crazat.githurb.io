@@ -1,257 +1,453 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>규림 다이어트 초기 설문</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 20px;
-  }
-  h1, h2, h3 {
-    margin-top: 30px;
-  }
-  label {
-    display: block;
-    margin-bottom: 8px;
-  }
-  input[type="text"], input[type="number"], select, textarea {
-    width: 100%;
-    max-width: 500px;
-    margin-bottom: 15px;
-    padding: 8px;
-    box-sizing: border-box;
-  }
-  input[type="checkbox"], input[type="radio"] {
-    margin-right: 5px;
-  }
-  .section {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-  }
-  .submit-btn {
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KM & JW Universe</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Noto+Sans+KR:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
+    <div class="app-container">
+        <!-- Snow & Lights Effects -->
+        <div class="snow-container">
+            <div class="snowflake" style="left: 10%; animation-delay: 0s;">❄</div>
+            <div class="snowflake" style="left: 20%; animation-delay: 2s;">❅</div>
+            <div class="snowflake" style="left: 30%; animation-delay: 4s;">❆</div>
+            <div class="snowflake" style="left: 40%; animation-delay: 1s;">❄</div>
+            <div class="snowflake" style="left: 50%; animation-delay: 3s;">❅</div>
+            <div class="snowflake" style="left: 60%; animation-delay: 5s;">❆</div>
+            <div class="snowflake" style="left: 70%; animation-delay: 2.5s;">❄</div>
+            <div class="snowflake" style="left: 80%; animation-delay: 1.5s;">❅</div>
+            <div class="snowflake" style="left: 90%; animation-delay: 3.5s;">❆</div>
+        </div>
+        <div class="lights-string">
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+            <div class="light-bulb"></div>
+        </div>
 
-<h1>규림 다이어트 초기 설문</h1>
+        <!-- Landing Section (Invitation Style) -->
+        <section id="landing" class="page active">
+            <div class="invitation-card">
+                <div class="wax-seal">🎄</div>
+                <div class="tree-container-mini">
+                    <div class="tree-layer"></div>
+                    <div class="tree-layer"></div>
+                    <div class="star-topper">★</div>
+                </div>
+                <div class="invitation-content">
+                    <div class="subtitle">You are invited to</div>
+                    <h1 class="title">KM & JW<br><span class="highlight">Universe</span></h1>
+                    <p class="message">크리스마스의 마법이 가득한<br>우리만의 공간으로 초대합니다.</p>
 
-<form action="send_survey.php" method="POST">
+                    <div class="login-buttons">
+                        <button class="btn-primary full-width" onclick="login('kyungmin')">For Kyung-min (Fairy)
+                            🧚‍♀️</button>
+                        <button class="btn-secondary full-width" onclick="login('jungwoo')">For Jung-woo (Butler)
+                            🤵‍♂️</button>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <!-- 기본정보 -->
-  <div class="section">
-    <h2>기본정보</h2>
-    <label>이름: <input type="text" name="name"></label>
-    <label>작성일: <input type="text" name="date"></label>
-    <label>
-      결혼여부:
-      <select name="marital_status">
-        <option value="">선택</option>
-        <option value="미혼">미혼</option>
-        <option value="기혼">기혼</option>
-      </select>
-    </label>
-    <label>출산여부 자녀수: <input type="number" name="children_count"></label>
-    <label>마지막 출산년도: <input type="text" name="last_birth_year"></label>
-    <label>생활 및 근무 패턴:
-      <select name="lifestyle_pattern">
-        <option value="">선택</option>
-        <option value="주간근무">주간근무</option>
-        <option value="야간근무">야간근무</option>
-        <option value="교대근무">교대근무</option>
-        <option value="기타">기타</option>
-      </select>
-    </label>
-    <label>평소 주로 활동: 
-      <select name="activity_pattern">
-        <option value="">선택</option>
-        <option value="서서 주로 활동">서서 주로 활동</option>
-        <option value="앉아서 주로 활동">앉아서 주로 활동</option>
-      </select>
-    </label>
-  </div>
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="page hidden">
+            <header class="header centered-header">
+                <button class="btn-icon settings-btn" onclick="navigateTo('settings')"><i
+                        class="fas fa-cog"></i></button>
+                <h2 class="header-title"><span id="user-name-title">기여미</span>의 주기</h2>
+                <div class="spacer"></div>
+            </header>
 
+            <div class="content dashboard-content">
+                <!-- D-Day Badge -->
+                <div class="d-day-badge" id="d-day-display">♥ +100일</div>
 
-  <!-- 나의 체중정보와 히스토리 -->
-  <div class="section">
-    <h2>나의 체중정보와 히스토리</h2>
-    <label>최근 체중증가: 몇 년/개월에 걸쳐 몇 kg 증가했는지:
-      <input type="text" name="recent_weight_gain_info" placeholder="예: 2년간 5kg 증가">
-    </label>
-    <label>오늘 병원 내원 전 음식/음료 섭취여부:
-      <input type="text" name="pre_visit_food_intake" placeholder="예: OO시간 전 OO 섭취">
-    </label>
-    <label>20세 이후 최고체중(이 때의 나이): <input type="text" name="weight_history_20s" placeholder="예: 65kg (나이 25세)"> </label>
-    <label>최저체중(이 때의 나이): <input type="text" name="lowest_weight" placeholder="예: 50kg (나이 21세)"> </label>
-    <label>다이어트 경험:
-      <select name="diet_experience">
-        <option value="">선택</option>
-        <option value="전혀없다">전혀없다</option>
-        <option value="1-2회">1-2회</option>
-        <option value="3-4회">3-4회</option>
-        <option value="5회이상">5회이상</option>
-      </select>
-    </label>
-    <label>시도한 다이어트 방법(중복가능):
-      <textarea name="diet_methods" placeholder="예: 미소식, 건강기능식품, 민간요법, 병원치료, 한방치료, 운동..."></textarea>
-    </label>
-    <label>위 방법들 중에서 가장 효과가 좋았던 다이어트 방법:
-      <input type="text" name="best_diet_method">
-    </label>
-    <label>그 방법 체중 감량 기간 / 총 감량 체중:
-      <input type="text" name="diet_result" placeholder="예: 3개월/5kg 감량">
-    </label>
-  </div>
+                <!-- Cycle Phase Card -->
+                <div class="card phase-card">
+                    <h3 class="card-title">주기 단계</h3>
+                    <p class="phase-desc" id="phase-desc">기여미가 배란기에 있습니다. 가까이 머물고, 소통하고, 정서적으로 함께 있어 주세요!</p>
 
+                    <div class="cycle-slider-container">
+                        <div class="cycle-track">
+                            <div class="track-segment period" style="width: 20%; left: 0;"></div>
+                            <div class="track-segment fertile" style="width: 25%; left: 35%;"></div>
+                        </div>
+                        <div class="cycle-thumb" id="cycle-thumb" style="left: 50%;"></div>
+                    </div>
+                    <div class="cycle-day-label" id="cycle-day-label">14일차</div>
+                </div>
 
-  <!-- 나의 평상시 몸상태 -->
-  <div class="section">
-    <h2>나의 평상시 몸상태 (모두 체크)</h2>
-    <p>과거에 앓았거나 현재 앓고 있는 질환이 있습니까?</p>
-    <label><input type="checkbox" name="diseases[]" value="간염(보균자)">간염(보균자)</label>
-    <label><input type="checkbox" name="diseases[]" value="갑상선질환">갑상선질환</label>
-    <label><input type="checkbox" name="diseases[]" value="지구낭심소질환">지구낭심소질환</label>
-    <label><input type="checkbox" name="diseases[]" value="신장질환">신장질환</label>
-    <label><input type="checkbox" name="diseases[]" value="혈핵, 당뇨, 고혈압">혈핵, 당뇨, 고혈압</label>
-    <label><input type="checkbox" name="diseases[]" value="수술경험">수술경험</label>
-    <label><input type="checkbox" name="diseases[]" value="기타">기타</label>
-    <label><input type="checkbox" name="diseases[]" value="없음">없음</label>
+                <!-- Pregnancy Chance Card (Fixed Graph) -->
+                <div class="card pregnancy-card">
+                    <h3 class="card-title">임신 가능성</h3>
+                    <div class="pregnancy-value" id="pregnancy-value">보통</div>
+                    <div class="wave-graph-container">
+                        <svg viewBox="0 0 100 50" class="wave-svg" preserveAspectRatio="none" id="pregnancy-graph-svg">
+                            <defs>
+                                <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#f8b229;stop-opacity:0.8" />
+                                    <stop offset="100%" style="stop-color:#f8b229;stop-opacity:0" />
+                                </linearGradient>
+                            </defs>
+                            <path id="graph-path-fill" d="" fill="url(#grad1)" />
+                            <path id="graph-path-line" d="" fill="none" stroke="#f8b229" stroke-width="2" />
+                        </svg>
+                        <div class="wave-indicator" id="wave-indicator" style="left: 50%;"></div>
+                    </div>
+                </div>
 
-    <p>현재 복용중인 건강기능식품 있나요?</p>
-    <label><input type="checkbox" name="supplements[]" value="없음">없음</label>
-    <label><input type="checkbox" name="supplements[]" value="비타민">비타민</label>
-    <label><input type="checkbox" name="supplements[]" value="피쉬오일, 오메가3">피쉬오일, 오메가3</label>
-    <label><input type="checkbox" name="supplements[]" value="홍삼">홍삼</label>
-    <label><input type="checkbox" name="supplements[]" value="건강즙">건강즙</label>
-    <label><input type="checkbox" name="supplements[]" value="기타">기타</label>
+                <!-- Stats Grid (Partner View) -->
+                <div class="stats-grid">
+                    <div class="card stat-card" onclick="openDailyLog(new Date())">
+                        <h3 class="card-title" id="partner-stat-title-1">상대방 성욕</h3>
+                        <div class="stat-content">
+                            <div class="stat-icon-circle pink"><i class="fas fa-heart"></i></div>
+                            <div class="stat-value" id="partner-libido">기록 없음</div>
+                        </div>
+                    </div>
+                    <div class="card stat-card" onclick="openDailyLog(new Date())">
+                        <h3 class="card-title" id="partner-stat-title-2">상대방 기분</h3>
+                        <div class="stat-content">
+                            <div class="stat-icon-circle yellow"><i class="fas fa-smile"></i></div>
+                            <div class="stat-value" id="partner-mood">기록 없음</div>
+                        </div>
+                    </div>
+                </div>
 
-    <p>소화상태, 수면패턴, 변비/설사 유무, 신체차가운지 여부, 몸 곳곳 통증유무, 생리주기 변화 여부 등 자세히 적어주세요.</p>
-    <textarea name="body_state_details" placeholder="예: 소화약함, 자주더부룩, 수면패턴 불규칙, 자주 피로, 변비 1주 2회, 손발차가움 등..."></textarea>
-  </div>
+                <!-- Quick Menu Grid -->
+                <div class="grid-menu small-grid">
+                    <div class="card menu-item small" onclick="navigateTo('sommelier')">
+                        <i class="fas fa-wine-glass-alt"></i>
+                        <span>Sommelier</span>
+                    </div>
+                    <div class="card menu-item small" onclick="navigateTo('stylist')">
+                        <i class="fas fa-tshirt"></i>
+                        <span>Stylist</span>
+                    </div>
+                </div>
+            </div>
 
+            <nav class="bottom-nav">
+                <button class="nav-item active" onclick="navigateTo('dashboard')"><i
+                        class="fas fa-tree"></i><span>오늘</span></button>
+                <button class="nav-item" onclick="navigateTo('calendar')"><i
+                        class="fas fa-calendar-alt"></i><span>달력</span></button>
+                <button class="nav-item" onclick="navigateTo('memory')"><i
+                        class="fas fa-camera"></i><span>추억</span></button>
+                <button class="nav-item" onclick="navigateTo('stylist')"><i
+                        class="fas fa-tshirt"></i><span>코디</span></button>
+            </nav>
+        </section>
 
-  <!-- 최근 나의 생활습관 -->
-  <div class="section">
-    <h2>최근 나의 생활습관</h2>
-    <label>
-      최근 식욕조절은?
-      <select name="appetite_control">
-        <option value="">선택</option>
-        <option value="전혀 안된다">전혀 안된다</option>
-        <option value="보통이다">보통이다</option>
-        <option value="잘 되는 편이다">잘 되는 편이다</option>
-      </select>
-    </label>
-    <label>
-      스트레스 받으면 음식섭취?
-      <select name="stress_eating">
-        <option value="">선택</option>
-        <option value="거의 먹는다">거의 먹는다</option>
-        <option value="간혹 먹는다">간혹 먹는다</option>
-        <option value="잘 안먹는다">잘 안먹는다</option>
-        <option value="모르겠다">모르겠다</option>
-      </select>
-    </label>
-    <label>
-      식사시간이 규칙적인 편인가요?
-      <select name="regular_meals">
-        <option value="">선택</option>
-        <option value="비교적 규칙적">비교적 규칙적</option>
-        <option value="불규칙적인 편">불규칙적인 편</option>
-      </select>
-    </label>
-    <label>평소 하루에 몇 끼를 드시나요?
-      <select name="meals_per_day">
-        <option value="">선택</option>
-        <option value="1끼">1끼</option>
-        <option value="2끼">2끼</option>
-        <option value="3끼">3끼</option>
-        <option value="한끼 불규칙">한끼 불규칙</option>
-      </select>
-    </label>
-    <label>음주횟수: 
-      <select name="drink_frequency">
-        <option value="">선택</option>
-        <option value="자주 마심(일주일 n회)">자주 마심(일주일 n회)</option>
-        <option value="거의 안 마심">거의 안 마심</option>
-      </select>
-    </label>
-    <label>일주일 운동패턴:
-      <select name="exercise_pattern">
-        <option value="">선택</option>
-        <option value="전혀안함">전혀안함</option>
-        <option value="간혹">간혹</option>
-        <option value="규칙적으로 함(일주일 n회)">규칙적으로 함(일주일 n회)</option>
-      </select>
-    </label>
-    <label>운동 시간(일주일 운동 시): <input type="text" name="exercise_time" placeholder="예: 하루 30분 ~1시간"></label>
-  </div>
+        <!-- Memory Feed Section (New) -->
+        <section id="memory" class="page hidden">
+            <header class="header">
+                <button class="btn-icon" onclick="navigateTo('dashboard')"><i class="fas fa-arrow-left"></i></button>
+                <h2>Our Memories</h2>
+                <div class="spacer"></div>
+            </header>
+            <div class="content" id="memory-feed">
+                <!-- Memory Cards injected here -->
+            </div>
+            <button class="fab-btn" onclick="openMemoryModal()"><i class="fas fa-plus"></i></button>
 
+            <nav class="bottom-nav">
+                <button class="nav-item" onclick="navigateTo('dashboard')"><i
+                        class="fas fa-tree"></i><span>오늘</span></button>
+                <button class="nav-item" onclick="navigateTo('calendar')"><i
+                        class="fas fa-calendar-alt"></i><span>달력</span></button>
+                <button class="nav-item active" onclick="navigateTo('memory')"><i
+                        class="fas fa-camera"></i><span>추억</span></button>
+                <button class="nav-item" onclick="navigateTo('stylist')"><i
+                        class="fas fa-tshirt"></i><span>코디</span></button>
+            </nav>
+        </section>
 
-  <!-- 나의 다이어트 목표 -->
-  <div class="section">
-    <h2>나의 다이어트 목표</h2>
-    <label>집에 전자체중계가 있나요?
-      <select name="scale_at_home">
-        <option value="">선택</option>
-        <option value="없음">없음</option>
-        <option value="있음">있음</option>
-      </select>
-    </label>
-    <label>감량을 해야 할 체중은?
-      <select name="weight_loss_goal_range">
-        <option value="">선택</option>
-        <option value="5kg이하">5kg이하</option>
-        <option value="5~10kg">5~10kg</option>
-        <option value="10~15kg">10~15kg</option>
-        <option value="15~20kg">15~20kg</option>
-        <option value="20kg이상">20kg이상</option>
-      </select>
-    </label>
-    <label>목표 체중: <input type="text" name="target_weight"></label>
-    <label>예상 감량기간? 
-      <select name="expected_duration">
-        <option value="">선택</option>
-        <option value="1개월">1개월</option>
-        <option value="2개월">2개월</option>
-        <option value="3개월">3개월</option>
-        <option value="더길게">더길게</option>
-      </select>
-    </label>
-    <label>특히 고민인 부위?
-      <textarea name="concerned_areas" placeholder="예: 복부, 옆구리, 팔뚝, 허벅지, 엉덩이, 얼굴 등"></textarea>
-    </label>
-    <label>감량을 결심하게 된 특별한 이유나 이벤트가 있나요?
-      <input type="text" name="special_reason" placeholder="예: 결혼, 행사, 건강, 자신감 회복, 스트레스 등">
-    </label>
-  </div>
+        <!-- Calendar Section -->
+        <section id="calendar" class="page hidden">
+            <header class="header">
+                <button class="btn-icon" onclick="navigateTo('dashboard')"><i class="fas fa-arrow-left"></i></button>
+                <h2>Secret Calendar</h2>
+                <div class="spacer"></div>
+            </header>
+            <div class="content">
+                <div class="card">
+                    <div class="calendar-header">
+                        <button class="btn-mini" onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
+                        <h3 id="current-month-display">December 2025</h3>
+                        <button class="btn-mini" onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="weekdays">
+                        <div>Sun</div>
+                        <div>Mon</div>
+                        <div>Tue</div>
+                        <div>Wed</div>
+                        <div>Thu</div>
+                        <div>Fri</div>
+                        <div>Sat</div>
+                    </div>
+                    <div class="calendar-grid" id="calendar-grid"></div>
+                    <div class="calendar-legend">
+                        <span class="legend-item"><span class="dot period"></span>생리</span>
+                        <span class="legend-item"><span class="dot fertile"></span>가임기</span>
+                        <span class="legend-item"><span class="dot love"></span>Love</span>
+                    </div>
+                </div>
+            </div>
+            <nav class="bottom-nav">
+                <button class="nav-item" onclick="navigateTo('dashboard')"><i
+                        class="fas fa-tree"></i><span>오늘</span></button>
+                <button class="nav-item active" onclick="navigateTo('calendar')"><i
+                        class="fas fa-calendar-alt"></i><span>달력</span></button>
+                <button class="nav-item" onclick="navigateTo('memory')"><i
+                        class="fas fa-camera"></i><span>추억</span></button>
+                <button class="nav-item" onclick="navigateTo('stylist')"><i
+                        class="fas fa-tshirt"></i><span>코디</span></button>
+            </nav>
+        </section>
 
+        <!-- Stylist Section -->
+        <section id="stylist" class="page hidden">
+            <header class="header">
+                <button class="btn-icon" onclick="navigateTo('dashboard')"><i class="fas fa-arrow-left"></i></button>
+                <h2>My Daily Stylist</h2>
+                <div class="spacer"></div>
+            </header>
+            <div class="content">
+                <!-- OOTD Generator -->
+                <div class="card">
+                    <h3 class="card-title">OOTD Generator</h3>
+                    <div class="form-group">
+                        <label>상황 (TPO)</label>
+                        <div class="select-options" id="tpo-select">
+                            <button class="option-btn active" data-value="work">출근</button>
+                            <button class="option-btn" data-value="date">데이트</button>
+                            <button class="option-btn" data-value="casual">일상</button>
+                        </div>
+                    </div>
+                    <button class="btn-primary full-width" onclick="generateOOTD()">코디 추천받기</button>
+                    <div id="ootd-result" class="ootd-result hidden">
+                        <p id="ootd-text">따뜻하지만 슬림해 보이는 로로피아나 머플러와 지난번 산 코트 조합 어때요?</p>
+                    </div>
+                </div>
 
-  <!-- 방문계기 -->
-  <div class="section">
-    <h2>방문계기</h2>
-    <label>소개/지인소개 (이름): <input type="text" name="referral_name"></label>
-    <label>직원소개 (이름): <input type="text" name="staff_name"></label>
-    <label>제휴사 (명칭): <input type="text" name="partner_name"></label>
+                <!-- Digital Closet -->
+                <div class="card">
+                    <div class="header-row" style="display:flex; justify-content:space-between;">
+                        <h3 class="card-title">Digital Closet</h3>
+                        <button class="btn-mini" onclick="document.getElementById('closet-upload').click()"><i
+                                class="fas fa-plus"></i></button>
+                        <input type="file" id="closet-upload" hidden accept="image/*" onchange="addToCloset(this)">
+                    </div>
+                    <div class="closet-grid" id="closet-grid">
+                        <!-- Items injected here -->
+                    </div>
+                </div>
 
-    <p>매체 (중복가능):</p>
-    <label><input type="checkbox" name="media[]" value="블로그, 카페">블로그, 카페</label>
-    <label><input type="checkbox" name="media[]" value="홈페이지">홈페이지</label>
-    <label><input type="checkbox" name="media[]" value="버스, 지하철, 택시">버스, 지하철, 택시</label>
-    <label><input type="checkbox" name="media[]" value="신문, 잡지">신문, 잡지</label>
-    <label><input type="checkbox" name="media[]" value="현수막, 전단, 배너">현수막, 전단, 배너</label>
-    <label><input type="checkbox" name="media[]" value="기타">기타</label>
-  </div>
-<form action="send_survey.php" method="POST">
-  <input type="submit" value="설문 제출" class="submit-btn">
+                <!-- Wishlist -->
+                <div class="card">
+                    <h3 class="card-title">Wishlist Approval</h3>
+                    <div class="form-group">
+                        <input type="text" id="wishlist-input" class="input-field" placeholder="사고 싶은 물건 이름...">
+                        <button class="btn-primary full-width" style="margin-top:10px;"
+                            onclick="addToWishlist()">올리기</button>
+                    </div>
+                    <div id="wishlist-container">
+                        <!-- Items injected here -->
+                    </div>
+                </div>
+            </div>
+            <nav class="bottom-nav">
+                <button class="nav-item" onclick="navigateTo('dashboard')"><i
+                        class="fas fa-tree"></i><span>오늘</span></button>
+                <button class="nav-item" onclick="navigateTo('calendar')"><i
+                        class="fas fa-calendar-alt"></i><span>달력</span></button>
+                <button class="nav-item" onclick="navigateTo('memory')"><i
+                        class="fas fa-camera"></i><span>추억</span></button>
+                <button class="nav-item active" onclick="navigateTo('stylist')"><i
+                        class="fas fa-tshirt"></i><span>코디</span></button>
+            </nav>
+        </section>
 
-</form>
+        <!-- Date Sommelier Section -->
+        <section id="sommelier" class="page hidden">
+            <header class="header">
+                <button class="btn-icon" onclick="navigateTo('dashboard')"><i class="fas fa-arrow-left"></i></button>
+                <h2>Date Sommelier</h2>
+                <div class="spacer"></div>
+            </header>
 
+            <div class="content">
+                <div class="sommelier-form">
+                    <div class="form-group">
+                        <label>요일</label>
+                        <div class="select-options" id="day-select">
+                            <button class="option-btn active" data-value="weekend">주말</button>
+                            <button class="option-btn" data-value="weekday">평일</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>오늘의 컨디션</label>
+                        <div class="select-options" id="condition-select">
+                            <button class="option-btn" data-value="bad">😢 피곤</button>
+                            <button class="option-btn active" data-value="good">😊 좋음</button>
+                            <button class="option-btn" data-value="best">😍 최고</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>날씨</label>
+                        <div class="select-options" id="weather-select">
+                            <button class="option-btn" data-value="rain">☔ 비/눈</button>
+                            <button class="option-btn active" data-value="clear">☀️ 맑음</button>
+                            <button class="option-btn" data-value="cloudy">☁️ 흐림</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>식사 옵션</label>
+                        <div class="toggle-wrapper">
+                            <span style="color:rgba(255,255,255,0.7)">No Carbs (저탄수)</span>
+                            <label class="switch">
+                                <input type="checkbox" id="no-carbs" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary full-width" onclick="recommendDate()">AI 추천 받기</button>
+                </div>
+
+                <div id="recommendation-result" class="card result-card hidden">
+                    <div class="result-header">
+                        <i class="fas fa-sparkles"></i>
+                        <span>AI's Pick</span>
+                    </div>
+                    <h3 id="result-title">추천 코스</h3>
+                    <p id="result-desc">설명</p>
+                </div>
+            </div>
+            <nav class="bottom-nav">
+                <button class="nav-item" onclick="navigateTo('dashboard')"><i
+                        class="fas fa-tree"></i><span>오늘</span></button>
+                <button class="nav-item" onclick="navigateTo('calendar')"><i
+                        class="fas fa-calendar-alt"></i><span>달력</span></button>
+                <button class="nav-item" onclick="navigateTo('memory')"><i
+                        class="fas fa-camera"></i><span>추억</span></button>
+                <button class="nav-item" onclick="navigateTo('stylist')"><i
+                        class="fas fa-tshirt"></i><span>코디</span></button>
+            </nav>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" class="page hidden">
+            <header class="header">
+                <button class="btn-icon" onclick="navigateTo('dashboard')"><i class="fas fa-arrow-left"></i></button>
+                <h2>Settings</h2>
+                <div class="spacer"></div>
+            </header>
+            <div class="content">
+                <div class="card">
+                    <h3>기본 정보</h3>
+                    <div class="form-group">
+                        <label>내 이름 (애칭)</label>
+                        <input type="text" id="setting-name" class="input-field" value="경민요정">
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Cycle 정보</h3>
+                    <div class="form-group">
+                        <label>마지막 생리 시작일</label>
+                        <input type="date" id="setting-last-period" class="input-field">
+                    </div>
+                    <div class="form-group">
+                        <label>평균 주기 (일)</label>
+                        <input type="number" id="setting-cycle-length" class="input-field" value="28">
+                    </div>
+                    <button class="btn-primary full-width" onclick="saveSettings()">저장하기</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daily Log Modal -->
+        <div id="log-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-date">2025.12.12</h3>
+                    <button class="btn-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>오늘의 기분 (나의 기록)</label>
+                        <div class="emoji-selector" id="log-mood">
+                            <span data-value="happy">🥰</span>
+                            <span data-value="calm">🙂</span>
+                            <span data-value="sad">😢</span>
+                            <span data-value="angry">😡</span>
+                            <span data-value="tired">🫠</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>성욕 (나의 기록)</label>
+                        <input type="range" id="log-libido" min="1" max="5" value="3" class="slider-range">
+                        <div class="range-labels">
+                            <span style="color:rgba(255,255,255,0.5)">Low</span>
+                            <span style="color:rgba(255,255,255,0.5)">High</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>메모</label>
+                        <textarea id="log-note" class="input-area" placeholder="오늘의 특별한 일..."></textarea>
+                    </div>
+                    <button class="btn-primary full-width" onclick="saveDailyLog()">기록 저장</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Memory Modal -->
+        <div id="memory-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Add Memory</h3>
+                    <button class="btn-close" onclick="closeMemoryModal()"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>사진</label>
+                        <input type="file" id="memory-photo" accept="image/*" class="input-field">
+                    </div>
+                    <div class="form-group">
+                        <label>날짜</label>
+                        <input type="date" id="memory-date" class="input-field">
+                    </div>
+                    <div class="form-group">
+                        <label>장소</label>
+                        <input type="text" id="memory-location" class="input-field" placeholder="어디서 찍었나요?">
+                    </div>
+                    <div class="form-group">
+                        <label>설명</label>
+                        <textarea id="memory-desc" class="input-area" placeholder="어떤 순간이었나요?"></textarea>
+                    </div>
+                    <button class="btn-primary full-width" onclick="saveMemory()">추억 저장</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
+
 </html>
